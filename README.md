@@ -29,7 +29,7 @@ export track
 
 1. raw signal
 * delayed signal
-* derey parameter
+* delay parameter
 
 ![msp](msp.png)
 
