@@ -36,3 +36,6 @@ export track
 ####Audacity
 
 ![audacity](audacity.png)
+
+
+*Audacity can not open multi track .wav.
