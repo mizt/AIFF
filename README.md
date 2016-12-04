@@ -11,12 +11,11 @@ multi track aiff read / write utylity.
 ####write
 
 	long channels = 1;
-	long index = 1;
 	long length = buffer->length*channels;
 	unsigned short *data = new unsigned short[length]{0};
 		
 	for(int k=0; k<buffer->length; k++) {
-		data[k*channels+index] = AIFF::to(buffer->data[k]);
+		data[k*channels+0] = AIFF::to(buffer->data[k]);
 	}
 
 	AIFF::write(DESKTOP_PATH(@"dst.aif"),buffer->data,length,channels);
