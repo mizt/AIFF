@@ -1,8 +1,8 @@
-#import <Foundation/Foundation.h>
-
 namespace AIFF {
 		
 	#define DESKTOP_PATH(v) [NSString stringWithFormat:@"%@/%@",[NSSearchPathForDirectoriesInDomains(NSDesktopDirectory,NSUserDomainMask,YES) objectAtIndex:0],v]
+	#define APP_DIR(v) [NSString stringWithFormat:@"%@/%@",[[[NSBundle mainBundle] bundlePath] stringByDeletingLastPathComponent],v]
+	#define WORKING_DIR(v) [NSString stringWithFormat:@"%@/%@",[[NSBundle mainBundle] bundlePath],v]
 
 	typedef struct {
 		double *data;
@@ -63,7 +63,6 @@ namespace AIFF {
 	
 	Buffer *read(NSString *file,unsigned long index) {
 		
-		
 		//printf("!\n");
 		
 		Buffer *buffer = new Buffer[1]{0};
@@ -71,7 +70,7 @@ namespace AIFF {
 		buffer->data = nullptr;
 		
 		
-		if([[file pathExtension] isEqualToString:@"aif"]) {
+		if([[file pathExtension] isEqualToString:@"aif"]||[[file pathExtension] isEqualToString:@"aiff"]) {
 			NSFileHandle *src = [NSFileHandle fileHandleForReadingAtPath:file];
 			if(src) {
 				NSData *data = [src readDataToEndOfFile];
@@ -191,26 +190,5 @@ namespace AIFF {
 		
 		[aif writeToFile:path options:NSDataWritingAtomic error:nil];
 
-	}
-}
-
-int main(int argc, char *argv[]) {
-	
-	@autoreleasepool {
-		
-		AIFF::Buffer *buffer = AIFF::read(DESKTOP_PATH(@"src.aif"),2);
-		if(buffer->length<=0) return 0;
-		
-		long channels = 1;
-		long index = 1;
-		long length = buffer->length*channels;
-		unsigned short *data = new unsigned short[length]{0};
-		
-		for(int k=0; k<buffer->length; k++) {
-			data[k*channels+index] = AIFF::to(buffer->data[k]);
-		}
-
-		AIFF::write(DESKTOP_PATH(@"dst.aif"),buffer->data,length,channels);
-		
 	}
 }
