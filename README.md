@@ -1,14 +1,14 @@
-#aiff
+# aiff
 
 multi track aiff read / write utylity.
 
-##usage
+## usage
 
-####read (3rd track)
+#### read (3rd track)
 
 	AIFF::Buffer *buffer = AIFF::read(DESKTOP_PATH(@"src.aif"),2);
 	
-####write
+#### write
 
 	long channels = 1;
 	long length = buffer->length*channels;
@@ -20,9 +20,9 @@ multi track aiff read / write utylity.
 
 	AIFF::write(DESKTOP_PATH(@"dst.aif"),buffer->data,length,channels);
 
-##example
+## example
 
-####Max/MSP
+#### Max/MSP
 
 export track
 
@@ -32,7 +32,7 @@ export track
 
 ![msp](msp.png)
 
-####Audacity
+#### Audacity
 
 ![audacity](audacity.png)
 
