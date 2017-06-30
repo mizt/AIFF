@@ -1,6 +1,6 @@
 # aiff
 
-multi track aiff read / write utylity.
+multi track aiff read / write utility.
 
 ## usage
 
