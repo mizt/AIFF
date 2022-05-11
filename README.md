@@ -1,4 +1,4 @@
-# aiff
+# AIFF
 
 multi track aiff read / write utility.
 
